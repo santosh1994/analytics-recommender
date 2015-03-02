@@ -1,0 +1,241 @@
+<%
+var widgetId = "unbxd-recommender-" + Math.floor((Math.random()*100000)+1) + "";
+var noOfItems = typeof(noOfItems) != 'undefined' ? noOfItems : 5;
+
+
+var showHeader = typeof(showHeader) != 'undefined' ? showHeader : true;
+if(showHeader == 'true') showHeader = true;
+if(showHeader == 'false') showHeader = false;
+
+var heading = (typeof(header) != 'undefined' && header['value'] ? header.value : null)
+				|| (titles[boxType] + (typeof(location) != 'undefined' ? (" IN " + location.toUpperCase()) : "")) 
+				|| "Recommendations";
+%>
+
+<link rel="stylesheet" type="text/css" href="//d21gpk1vhmjuf5.cloudfront.net/embed.css">
+<style type="text/css">
+.unbxd-contHz {
+	display: none;
+	padding: 0 !important;
+}
+ul.unbxd-widgets li a {
+	color: #3f3530;
+}
+ul.unbxd-widgets li a:hover {
+	color: #ff6700;
+}
+#<%= widgetId%>
+{
+	background-color: <%= typeof(background) != 'undefined' ? background : "transparent"%>;
+}
+<%
+	var widgetSize = typeof(widgetSize) != 'undefined' ? widgetSize : {};
+	if(!widgetSize['width']){
+  		widgetSize.width = 100;
+  	}
+  	if(widgetSize.width > 100){
+  		var widgetWidth = widgetSize.width + 'px';
+  		var widgetInternalWidth = widgetSize.width - 40;
+  		if(border && border.size != undefined) 
+  			widgetInternalWidth = widgetInternalWidth - (border.size * 2);
+  			
+  		var imageWidth = Math.floor(widgetInternalWidth / noOfItems) + 'px';
+  		var headerWidth = (widgetSize.width - 100) + 'px';
+	}else{
+  		var widgetWidth = widgetSize.width + '%';
+  		var imageWidth = ((100 / noOfItems) - 0.01) + '%';
+  		var headerWidth = '80%';
+	}	
+%>	
+		#<%= widgetId%>
+		{
+		   width : <%= widgetWidth%>;
+		}
+		#<%= widgetId%> .unbxd-headLeftHz
+		{
+		   width : <%= headerWidth%>;
+		}
+		#<%= widgetId%> .unbxd-width-x
+		{
+		   width : <%= imageWidth%>;
+		}
+<%	
+	if(typeof(border) != 'undefined'){
+%>
+	    #<%= widgetId%>
+	    {
+	    	border-width : <%= border.size%>px;
+	       	border-color : <%= border.color%>;
+	    }
+<%
+  	}
+
+  	if(typeof(header) != 'undefined'){
+%>
+    	#<%= widgetId%> .unbxd-headLeftHz .unbxd-class1
+    	{
+    		font-size : <%= header.fontSize%>;
+    		font-weight : <%= header.fontWeight%>;
+    		text-align : <%= header.align%>;
+    		color : <%= header.color%>;
+    	}
+<%
+  	}
+%>
+</style>
+<div class="unbxd-contHz" id="<%= widgetId%>">
+	<div class='unbxd-widget-header'>
+		<% if(showHeader) {%>
+		<div class="unbxd-headLeftHz">
+			<div class="section-title"><%= heading%></div>
+			<!--.unbxd-class2 Powered by
+				a(href='http://unbxd.com', target='_blank')
+				  .unbxd-logo-->
+		</div>
+		<% 
+			}
+		%>
+		<div style="clear:both"></div>
+	</div>
+	<div class="unbxd-wrapperHz">
+	<%
+		var page_size = noOfItems || 5;
+    	var num_slides = Math.floor(products.length / page_size);
+    	var products_in_last_slide = products.length % page_size;
+    	if(products_in_last_slide > 0) num_slides = num_slides + 1;
+    	for(var i = 0; i < num_slides; i++){
+    %>
+    	<div class="unbxd-slideHz">
+	    	<%
+	    		var rows = [{ 
+					fieldName : 'image_link'
+				}];
+
+	    		if(typeof(description) != 'undefined' && description.length > 0){
+	    			rows = rows.concat(description);
+	    		}
+    			_.each(rows, function(row){
+    		%>
+    			<div class="unbxd-width-100">
+    				<ul class="unbxd-widgets">
+		   	<%
+		    		for(var j = 0; j < page_size; j++){
+			        	var index = (i * page_size) + j;
+			        	if(products.length > index){
+			        		var product = products[index];
+			          		var image_link = product['image_link'] == undefined ? '' : product['image_link'][0];
+			          		var item_link = product['item_link'] || '#';
+			          		var sourceAttrString = typeof(sourceAttr) != 'undefined' && typeof(sourceAttrValue) != 'undefined' ? sourceAttr + "='" + sourceAttrValue + "'" : "";
+
+			          		var styleStr = row.fieldName == 'image_link' ? "" : ("font-size: " + row['fontSize'] + "; font-weight: " + row['fontWeight'] + "; text-align: " + row['float'] + ";");
+			          		var classStr = row.fieldName == 'image_link' ? "unbxd-parent" : "unbxd-desc";
+			          		var currency = row['currency'] || product['currency'] || "USD";
+			          		var currencySym = currencyCodes[currency.trim()] || currency;
+		    %> 		
+							<li class="unbxd-width-x unbxd-field-<%= row.fieldName%> <%= classStr%>" style="<%= styleStr%>" unbxdparam_sku="<%= product['pid']%>" unbxdparam_prank="<%= index + 1%>" unbxdattr="product" unbxdparam_boxtype="<%= boxType%>" <%= sourceAttrString%>>
+								<a href="<%= item_link%>" style="position: relative;">
+			<%
+								if(row.fieldName == 'image_link'){
+			%>
+			<span class="product-price" style="bottom: 4px;">
+     
+      <small>from </small><%= currencySym%><%= isNaN(product['price']) ? product['price'] : product['price'].toFixed(2)%>
+    
+    </span>
+									
+
+									<img src="<%= image_link%>">
+			<%
+								}else if(row.fieldName == 'price'){
+			
+								}else{
+			%>
+									<%= product[row['fieldName']]%>
+			<%
+								}
+			%>
+								</a>
+							</li>
+			<%				
+						}
+					}
+			%>	
+					</ul>
+				</div>
+			<%
+    			});
+			}
+			%>
+    	</div>
+	</div>
+</div>
+<script type="text/javascript">(function($){
+	var widgetId = "<%= widgetId%>";
+	
+	// Scroll vars
+	var currentPosition = 0;
+	var slides = $('#' + widgetId + ' .unbxd-slideHz');
+	var numberOfSlides = slides.length;
+	
+	// Remove scrollbar in JS
+	$('#' + widgetId + ' .unbxd-wrapperHz').css('overflow', 'hidden');
+	
+	// Wrap all .slides with #slideInner div
+	slides.wrapAll('<div id="slideInner"></div>')
+	// Float left to display horizontally, readjust .slides width
+	.css({
+	  'float' : 'left',
+	  'width' : (100 / numberOfSlides) + '%'
+	});
+	
+	// Set #slideInner width equal to total width of all slides
+	$('#' + widgetId + ' #slideInner').css('width', (100 * numberOfSlides) + '%');
+	
+	// Insert left and right arrow controls in the DOM
+	$('#' + widgetId + " .unbxd-widget-header")
+	  .prepend('<span class="unbxd-control" style="float:right;" id="arrowLeft"><img src="//d21gpk1vhmjuf5.cloudfront.net/img/arrow-left.png" style="margin-right:10px; width:16px; height:16px; border:none;" />	</span>')
+      // .prepend('<span style="float:right;display: none;" id="arrowLeftInactive"><img src="//d21gpk1vhmjuf5.cloudfront.net/img/arrow-left-inactive.png" style="margin-right:10px; width:16px; height:16px; border:none;" />	</span>')
+      .prepend('<span class="unbxd-control" style="float: right;" id="arrowRight"> <img src="//d21gpk1vhmjuf5.cloudfront.net/img/arrow-right.png" style="width:16px; height:16px; border:none;"/></span>')
+      // .prepend('<span style="float: right;display: none;" id="arrowRightInactive"> <img src="//d21gpk1vhmjuf5.cloudfront.net/img/arrow-right-inactive.png" style="width:16px; height:16px; border:none;" /></span>');
+	  
+	// Hide left arrow control on first load
+	manageControls(currentPosition);
+	
+	// Create event listeners for .controls clicks
+	$('#' + widgetId + ' .unbxd-control').bind('click', function(){
+	  // Determine new position
+	  currentPosition = ($(this).attr('id')=='arrowRight') ? currentPosition + 1 : currentPosition - 1;
+	  
+	  // Hide / show controls
+	  manageControls(currentPosition);
+	  
+	  // Move slideInner using margin-left
+	  $('#' + widgetId + ' #slideInner').animate({
+	    'marginLeft' : 100*(-currentPosition) + '%'
+	  });
+	});
+	
+	// manageControls: Hides and shows controls depending on currentPosition
+	function manageControls(position){
+	  // Hide left arrow if position is first slide
+	  if(position == 0){ 
+	    $('#' + widgetId + ' #arrowLeft').hide();
+	    // $('#' + widgetId + ' #arrowLeftInactive').show();
+	    // $('#' + widgetId + ' #arrowRightInactive').hide();
+	  }else{
+	    $('#' + widgetId + ' #arrowLeft').show();
+	    // $('#' + widgetId + ' #arrowLeftInactive').hide(); 
+	  }
+	  
+	  // Hide right arrow if position is last slide
+	  if(position==numberOfSlides-1){ 
+	    $('#' + widgetId + ' #arrowRight').hide(); 
+	    // $('#' + widgetId + ' #arrowLeftInactive').hide(); 
+	    // $('#' + widgetId + ' #arrowRightInactive').show(); 
+	  }else{ 
+	    $('#' + widgetId + ' #arrowRight').show();  
+	    // $('#' + widgetId + ' #arrowRightInactive').hide();
+	  }
+	}
+	})(jQuery);  
+</script>

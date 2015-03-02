@@ -1,0 +1,250 @@
+<%
+var widgetId = "unbxd-recommender-" + Math.floor((Math.random()*100000)+1) + "";
+var noOfItems = typeof(noOfItems) != 'undefined' ? noOfItems : 2;
+
+var showHeader = typeof(showHeader) != 'undefined' ? showHeader : true;
+if(showHeader == 'true') showHeader = true;
+if(showHeader == 'false') showHeader = false;
+
+var headerHeight = showHeader ? 50 : 0;
+
+var description = typeof(description) != 'undefined' ? description : [];
+var wrapperHeight = noOfItems * (250 + 10 + (description.length * 40));
+
+var widgetSize = typeof(widgetSize) != 'undefined' ? widgetSize : {};
+widgetSize.maxHeight = wrapperHeight + headerHeight + 40;
+
+var heading = (typeof(header) != 'undefined' && header['value'] ? header.value : null)
+				|| (boxType ? (titles[boxType] + (typeof(location) != 'undefined' ? (" IN " + location.toUpperCase()) : "")) : "" ) 
+				|| "Recommendations";
+%>
+
+<link rel="stylesheet" type="text/css" href="//d21gpk1vhmjuf5.cloudfront.net/embed.css">
+<style type="text/css">
+#<%= widgetId%>
+{
+	background-color: <%= typeof(background) != 'undefined' ? background : "transparent"%>;
+}
+<%
+	if(widgetSize && widgetSize.width){
+		if(widgetSize.width > 100){
+			var widgetWidth = widgetSize.width + 'px';
+		}else{
+			var widgetWidth = widgetSize.width + '%';
+		}
+%>
+		#<%= widgetId%>
+		{
+		   width : <%= widgetWidth%>;
+		}
+		#<%= widgetId%> > * > * > * > .unbxd-imgContainer
+		{
+		   width : "100%";
+		}
+<%
+	}
+	if(noOfItems){
+    	var imageContainerHeight = Math.floor(wrapperHeight / noOfItems) - 10;
+    	var imageHeight = imageContainerHeight - (description.length == 0 ? 80 : (description.length * 40));
+    	if(imageHeight < 0) 
+    		imageHeight = 0;
+
+    	if(widgetSize && widgetSize.maxHeight){
+%>
+			#<%= widgetId%>
+			{
+			   height : <%= widgetSize.maxHeight%>px;
+			}
+<%
+		}
+%>
+		#<%= widgetId%> .unbxd-wrapperVt
+	    {
+	    	height : <%= wrapperHeight%>px;
+	    }
+	    #<%= widgetId%> .unbxd-imgContainer
+	    {
+	       height : <%= imageContainerHeight%>px;
+	       float: none;
+	       display: block;
+	       width: 100%;
+	    }
+	    #<%= widgetId%> .unbxd-imgContainer .unbxd-img
+	    {
+	       max-height : <%= imageHeight%>px;
+	    }
+	    #<%= widgetId%> .unbxd-imgContainer .unbxd-img > img
+	    {
+	       max-height : <%= imageHeight%>px;
+	    }
+<%
+  	}
+
+  	if(typeof(border) != 'undefined'){
+%>
+    	#<%= widgetId%> 
+    	{
+    		border-width : <%= border.size%>px;
+    		border-color : <%= border.color%>;
+    	}
+<%
+  	}
+
+  	if(typeof(header) != 'undefined'){
+%>
+    	#<%= widgetId%> .unbxd-headLeftVt .unbxd-class1
+    	{
+    		font-size : <%= header.fontSize%>;
+    		font-weight : <%= header.fontWeight%>;
+    		text-align : <%= header.align%>;
+    		color : <%= header.color%>;
+    	}
+<%
+  	}
+%>
+</style>
+<div class="unbxd-contVt" id="<%= widgetId%>">
+	<% if(showHeader) {%>
+	<div class="unbxd-headLeftVt">
+		<div class="unbxd-class1" style='margin-bottom: 10px;'><%= heading%></div>
+		<!--.unbxd-class2 Powered by
+			a(href='http://unbxd.com', target='_blank')
+			  .unbxd-logo-->
+	</div>
+	<% 
+		}
+	%>
+	<div class="unbxd-wrapperVt">
+	<%
+		var page_size = noOfItems || 2;
+    	var num_slides = Math.floor(products.length / page_size);
+    	var products_in_last_slide = products.length % page_size;
+      	if(products_in_last_slide > 0) num_slides = num_slides + 1;
+      	for(var i = 0; i < num_slides; i++){
+    %>
+    	<div class="unbxd-slideVt">
+    <%
+    		for(var j = 0; j < page_size; j++){
+	        	var index = (i * page_size) + j;
+	        	if(products.length > index){
+	        		var product = products[index];
+	          		var image_link = product['image_link'] == undefined ? '' : product['image_link'][0];
+	          		var item_link = product['item_link'] || '#';
+	          		if(item_link.indexOf('http') !== 0 && item_link.indexOf('/') !== 0 )
+	          			item_link = '/' + item_link;
+	          		var sourceAttrString = typeof(sourceAttr) != 'undefined' && typeof(sourceAttrValue) != 'undefined' ? sourceAttr + "='" + sourceAttrValue + "'" : "";
+    %>
+	        		<a class="unbxd-imgContainer" href="<%= item_link%>" unbxdparam_sku="<%= product['pid']%>" unbxdparam_prank="<%= index + 1%>" unbxdattr="product" unbxdparam_boxtype="<%= boxType%>" <%= sourceAttrString%>>
+						<div class="unbxd-img unbxd-field-image_link">
+							<img src="<%= image_link%>">
+						</div>
+	<%
+						if(description != undefined && description.length > 0){
+							for(var k = 0; k < description.length; k++){
+								var desc = description[k];
+								var styleStr = "font-size: " + desc['fontSize'] + "; font-weight: " + desc['fontWeight'] + "; text-align: " + desc['float'] + ";"
+								var isLast = (k == description.length - 1);
+
+			          			if(desc.fieldName == 'price'){
+			          				var currency = desc['currency'] || product['currency'] || "USD"
+			          				var currencySym = currencyCodes[currency.trim()] || currency;
+	%>
+									<div class="unbxd-desc unbxd-field-<%= desc.fieldName%>" style="<%= styleStr%>">
+										<span class="currency-symbol"><%= currencySym%></span><span><%= isNaN(product[desc['fieldName']]) ? product[desc['fieldName']] : product[desc['fieldName']].toFixed(2)%></span>
+									</div>
+	<%
+								}else{
+	%>
+									<div class="unbxd-desc unbxd-field-<%= desc.fieldName%>" style="<%= styleStr%>">
+										<%= product[desc['fieldName']]%>
+									</div>
+	<%
+								}			
+							}
+						}
+	%>
+					</a>
+	<%				
+				}
+			}
+	%>
+		</div>
+	<%
+		}
+	%>
+    	
+	</div>
+</div>
+<script type="text/javascript">(function($){
+	var widgetId = "<%= widgetId%>";
+	
+	// Scroll vars
+	// Scroll vars
+    var currentPositionVt = 0;
+    var slideHeight = <%= (widgetSize ? widgetSize.maxHeight - headerHeight - 40 : null) || 460 %>;
+    var slidesVert = $('#' + widgetId + ' .unbxd-slideVt');
+    var numberOfSlidesVt = slidesVert.length;
+    
+    // Remove scrollbar in JS
+    $('#' + widgetId + ' .unbxd-wrapperVt').css('overflow', 'hidden');
+    
+    // Wrap all .slides with #slideInner div
+    slidesVert.wrapAll('<div id="slideInner1"></div>')
+    // Float left to display horizontally, readjust .slides width
+    .css({
+      'float' : 'left',
+      'height' : slideHeight
+    });
+    
+    // Set #slideInner width equal to total width of all slides
+    $('#' + widgetId + ' #slideInner1').css('height', slideHeight * numberOfSlidesVt);
+    
+    // Insert left and right arrow controls in the DOM
+    $('#' + widgetId)
+      .append('<span class="unbxd-controlVt" id="arrowDown" style="float:right;"> <img src="//d21gpk1vhmjuf5.cloudfront.net/img/arrow-down.png" style="width:16px; height:16px; border:none;" /></span>')
+      .append('<span style="display: none; float:right;" id="arrowDownInactive"> <img src="//d21gpk1vhmjuf5.cloudfront.net/img/arrow-down-inactive.png" style="width:16px; height:16px; border:none;" /></span>')
+      .append('<span class="unbxd-controlVt" id="arrowUp" style="float:right;"><img src="//d21gpk1vhmjuf5.cloudfront.net/img/arrow-up.png" style="width:16px; height:16px; border:none;" /> </span>')
+      .append('<span style="display: none; float:right;" id="arrowUpInactive"><img src="//d21gpk1vhmjuf5.cloudfront.net/img/arrow-up-inactive.png" style="width:16px; height:16px; border:none;" />  </span>');
+      
+    
+    // Hide left arrow control on first load
+    manageControlsVt(currentPositionVt);
+    
+    // Create event listeners for .controls clicks
+    $('#' + widgetId + ' .unbxd-controlVt').bind('click', function(){
+      // Determine new position
+      currentPositionVt = ($(this).attr('id')=='arrowDown') ? currentPositionVt+1 : currentPositionVt-1;
+      
+      // Hide / show controls
+      manageControlsVt(currentPositionVt);
+    
+      // Move slideInner using margin-left
+      $('#' + widgetId + ' #slideInner1').animate({
+        'marginTop' : slideHeight*(-currentPositionVt)
+      });
+    });
+    
+    // manageControls: Hides and shows controls depending on currentPosition
+    function manageControlsVt(positionVt){
+      // Hide left arrow if position is first slide
+      if(positionVt==0){ 
+        $('#' + widgetId + ' #arrowUp').hide();
+        $('#' + widgetId + ' #arrowUpInactive').show();
+        $('#' + widgetId + ' #arrowDownInactive').hide();
+      }else{
+        $('#' + widgetId + ' #arrowUp').show();
+        $('#' + widgetId + ' #arrowUpInactive').hide(); 
+      }
+    
+      // Hide right arrow if position is last slide
+      if(positionVt == numberOfSlidesVt - 1){ 
+        $('#' + widgetId + ' #arrowDown').hide(); 
+        $('#' + widgetId + ' #arrowUpInactive').hide(); 
+        $('#' + widgetId + ' #arrowDownInactive').show(); 
+      }else{ 
+        $('#' + widgetId + ' #arrowDown').show(); 
+        $('#' + widgetId + ' #arrowDownInactive').hide(); 
+      }
+    }
+	})(jQuery);  
+</script>

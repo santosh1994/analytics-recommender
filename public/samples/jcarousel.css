@@ -1,0 +1,182 @@
+.container
+{
+	
+	padding: 40px 0px 0px 0px;
+	font-size: 14px;
+	font-family: Arial;
+	width:1110px;
+	margin : 0px auto;
+}
+
+.wrapperHz
+{
+	width: 830px;
+}
+ .contHz
+{
+	float:left;
+	width:830px;
+	border:1px solid #a3a3a3;
+	border-radius: 5px;
+	margin-right: 60px;
+	padding: 20px 20px 0px 20px;
+	
+}
+.wrapperVt
+{
+	width:150px;
+	height: 482px;
+}
+.contVt
+{
+	width:150px;
+	float: left;
+	height: 573px;
+	border:1px solid #a3a3a3;
+	border-radius: 5px;
+	margin-right: 0px;
+	padding: 10px 10px 0px 10px;
+}
+.slideVt
+{
+.width:180px; 
+height:400px;
+float: left;
+margin-top:0px;
+}
+.headLeftHz
+{
+	float: left;
+	width:700px;
+}
+.headLeftVt
+{
+	float: left;
+	width:150px;
+}
+.slideHz
+{
+	float: left;
+	padding-top: 20px;
+	width:810px;	
+}
+
+.imgContainer
+{
+	float: left; 
+	width:150px;
+	-webkit-zoom: reset;
+}
+
+.img
+{
+	background: url(img/OTC_RGB_200x200.gif);
+	background-color: gray;
+	border: 0px;
+	width: 150px;
+	height: 150px;
+	float: left;
+	-webkit-zoom: reset;
+	
+}
+.img1
+{
+	background: url(img/Cat-dunecat-lg_(200_x_200).jpeg);
+	background-color: gray;
+	border: 0px;
+	width: 150px;
+	height: 150px;
+	float: left;
+	-webkit-zoom: reset;
+}
+.img2
+{
+	background: url(img/cotton_t_shirt_200_grams.jpeg);
+	background-color: gray;
+	border: 0px;
+	width: 150px;
+	height: 150px;
+	float: left;
+	-webkit-zoom: reset;
+	
+}
+.grayText
+{
+	float: left;
+	margin:10px 0px 10px 0px;
+	color: #666;
+	font-size: 13px;
+}
+.price
+{
+	float: left;
+	width: 150px;
+	border-top: 1px solid #e5e5e5;
+	border-bottom: 1px solid #e5e5e5;
+	padding: 2px 0px 2px 0px;
+	margin-bottom:20px;
+	font-size: 13px;
+	font-weight: bold;
+	color: #222;
+}
+.space
+{
+	float: left; 
+	width: 20px;
+	min-height: 200px;
+}
+.class1
+{
+	font-size:15px; font-weight: bold;
+	color: #222;float: left; width:auto;
+}
+.class2
+{
+	font-size: 11px;
+	color: #999;
+	float: left;
+	padding-left: 15px;
+	padding-top: 3px;
+}
+.logo
+{
+	float: left; width:63px; height:18px;
+	background: url(img/logo-unbxd.png) no-repeat;
+	border: 0;
+	margin-left: 7px;
+}
+
+@media (min-width: 1200px) { 
+	
+	.img
+{
+	background: url(img/OTC_RGB_200x200.gif);
+	border: 0px;
+	width: 150px;
+	height: 150px;
+	float: left;
+	
+}
+.img1
+{
+	background: url(img/Cat-dunecat-lg_(200_x_200).jpeg);
+	background-color: gray;
+	border: 0px;
+	width: 150px;
+	height: 150px;
+	float: left;
+}
+.img2
+{
+	background: url(img/cotton_t_shirt_200_grams.jpeg);
+	background-color: gray;
+	border: 0px;
+	width: 150px;
+	height: 150px;
+	float: left;
+	
+}
+	
+	
+	
+	 }

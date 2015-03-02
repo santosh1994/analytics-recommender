@@ -1,0 +1,15 @@
+{
+  "name": "analytics-recommender",
+  "description": "Serves recommender widgets",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "3.x",
+    "jade" : "1.3.1",
+    "underscore" : "1.7.0",
+    "log4js" : "0.6.21",
+    "request" : "2.44.0",
+    "node-html-encoder" : "0.0.2",
+    "mobile-detect" : "0.4.0"
+  }
+}

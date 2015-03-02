@@ -1,0 +1,213 @@
+.unbxd-wrapperHz
+{
+	width : 100%;
+}
+ .unbxd-contHz
+{
+	display: block !important;
+	float:left;
+	width:830px;
+	border:0 #efefef solid;
+	border-radius: 5px;
+	margin-top: 5px;
+	padding: 20px 20px 20px 20px;
+	font-family: inherit;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
+.unbxd-wrapperVt
+{
+	width : 100%;
+	height: 460px;
+}
+.unbxd-contVt
+{
+	display: block !important;
+	width:170px;
+	float: left;
+	height: 550px;
+	border:0 #efefef solid;
+	border-radius: 5px;
+	margin-right: 0px;
+	padding: 10px 10px 0px 10px;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.unbxd-slideVt
+{
+	width:100%; 
+	height:400px;
+	float: left;
+	margin-top:0px;
+}
+
+.unbxd-headLeftHz
+{
+	float: left;
+	width:700px;
+}
+
+.unbxd-headLeftVt
+{
+	float: left;
+	width : 100%;
+	height : 50px;
+}
+
+.unbxd-slideHz
+{
+	float: left;
+	padding-top: 20px;
+	width:810px;	
+}
+
+.unbxd-imgContainer
+{
+	float: left; 
+	width:150px;
+	-webkit-zoom: reset;
+}
+
+.unbxd-slideVt > .unbxd-imgContainer
+{
+	height: 230px;
+	margin-top: 10px;
+}
+
+.unbxd-img
+{
+	text-align: center;
+	border: 0px;
+	width: 100%;
+	max-height: 250px;
+	float: left;
+	-webkit-zoom: reset;
+	
+}
+
+.unbxd-img img{
+	max-width: 100%;
+	max-height: 250px;
+}
+
+.unbxd-grayText
+{
+	float: left;
+	color: #666;
+	font-size: 13px;
+	width: 100%;
+}
+.unbxd-price
+{
+	float: left;
+	width: 100%;
+	padding: 2px 0px 2px 0px;
+	margin-bottom:20px;
+	font-size: 13px;
+	font-weight: bold;
+	color: #222;
+}
+
+.unbxd-desc
+{
+	float: left;
+	width: 100%;
+	padding: 2px 0px 2px 0px;
+	font-size: 13px;
+	color: #000;	
+}
+
+.unbxd-desc-last
+{
+	margin-bottom:20px;
+}
+
+.unbxd-space
+{
+	float: left; 
+	width: 20px;
+	min-height: 2px;
+}
+.unbxd-class1
+{
+	font-size:15px; font-weight: bold;
+	color: #222;float: left; 
+	width: 100%;
+	white-space: normal !important;
+}
+
+.unbxd-class2
+{
+	font-size: 11px;
+	color: #999;
+	float: left;
+	padding-left: 15px;
+	padding-top: 3px;
+}
+
+.unbxd-logo
+{
+	float: left; width:63px; height:18px;
+	background: url(//d21gpk1vhmjuf5.cloudfront.net/img/logo-unbxd.png) no-repeat;
+	border: 0;
+	margin-left: 7px;
+}
+
+#arrowLeft {
+	cursor: pointer;
+}
+
+#arrowRight {
+	cursor: pointer;
+}
+
+.unbxd-width-100 {
+	width: 100%;
+	float: left;
+}
+
+.unbxd-width-x{
+	text-decoration: none;
+}
+
+.unbxd-parent
+{
+	text-align: center;
+	/*height: 100%;*/
+}
+
+ul.unbxd-widgets
+{
+    margin:0;
+    padding:0;
+    list-style-type:none;
+       
+}
+
+ul.unbxd-widgets li
+{
+    display: inline-block;
+    text-align: center;
+    vertical-align: bottom;
+}
+
+.unbxd-parent{
+	margin-right: -4px;
+}
+
+ul.unbxd-widgets li a
+{
+    width: 96%;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+ul.unbxd-widgets li a img 
+{
+	max-width: 100%;
+	max-height: 250px;
+}

@@ -1,0 +1,385 @@
+<%
+var widgetId = "unbxd-recommender-" + Math.floor((Math.random()*100000)+1) + "";
+var noOfItems = 4, isMobile = false;
+
+if(typeof(screenWidth) != 'undefined'){
+	if(screenWidth <= 550){
+		noOfItems = 4;
+		num_slides = 1;
+		isMobile = true;
+	}else if(screenWidth <= 750){
+		noOfItems = 2;
+	}else if(screenWidth <= 1000){
+		noOfItems = 3;
+	}
+}
+
+var showHeader = true;
+
+var description =  [{ key: 'title',
+    fieldName: 'pname',
+    fontSize: '12px',
+    float: 'Center',
+    fontWeight: 'Normal' }];
+
+var widgetTitles = {
+	'ALSO_VIEWED' : 'DEBORAH RECOMMENDS', 
+	'ALSO_BOUGHT' : 'PEOPLE WHO BOUGHT THIS ALSO BOUGHT', 
+	'RECENTLY_VIEWED' : 'Recently viewed items', 
+	'RECOMMENDED_FOR_YOU' : 'Recommended for you', 
+	'MORE_LIKE_THESE' : 'DEBORAH RECOMMENDS', 
+	'TOP_SELLERS' : 'TOP SELLING PRODUCTS', 
+	'CATEGORY_TOP_SELLERS' : 'TOP SELLING PRODUCTS IN THIS CATEGORY', 
+	'BRAND_TOP_SELLERS' : 'TOP SELLING PRODUCTS IN THIS BRAND', 
+	'PDP_TOP_SELLERS' : 'TOP SELLING PRODUCTS LIKE THIS', 
+	'CART_RECOMMEND' : 'You may also love'
+};
+
+%>
+
+<link rel="stylesheet" type="text/css" href="//d21gpk1vhmjuf5.cloudfront.net/embed.css">
+<style type="text/css">
+
+
+
+.unbxd-contHz{
+   padding: 0px !important;
+   width: 500px !important;
+   margin-top: 0px !important;
+   display: none;
+}
+
+.unbxd-slideHz{
+   padding-top: 15px !important;
+}
+
+.unbxd-widgets{
+   font-size: 0px;
+}
+
+.unbxd-class1{
+   color: #FFF !important;
+   font: 20px/24px 'Questrial' !important;
+   text-transform: uppercase;
+}
+
+.unbxd-desc a{
+   color: #FFF !important;
+   font-weight: normal !important;
+   font-family: 'Open Sans';
+}
+
+.unbxd-width-x {
+width: 125px !important;
+}
+
+.unbxd-width-x a{
+   width: 100% !important;
+}
+
+.unbxd-field-pname{
+   padding: 22px 15px 0px 15px !important;
+   width: 95px !important;
+}
+
+.unbxd-parent { margin-right:0px !important }
+
+#<%= widgetId %>
+{
+	background-color: #000;
+}
+<%
+	var widgetSize = typeof(widgetSize) != 'undefined' ? widgetSize : {};
+	if(!widgetSize['width']){
+  		widgetSize.width = 100;
+  	}
+  	if(widgetSize.width > 100){
+  		var widgetWidth = widgetSize.width + 'px';
+  		var widgetInternalWidth = widgetSize.width - 40;
+  		if(border && border.size != undefined) 
+  			widgetInternalWidth = widgetInternalWidth - (border.size * 2);
+  			
+  		var imageWidth = Math.floor(widgetInternalWidth / noOfItems) + 'px';
+  		var headerWidth = (widgetSize.width - 100) + 'px';
+	}else{
+  		var widgetWidth = widgetSize.width + '%';
+  		var imageWidth = ((100 / noOfItems) - 0.01) + '%';
+  		var headerWidth = '80%';
+	}	
+%>	
+		#<%= widgetId%>
+		{
+		   width : <%= widgetWidth%>;
+		}
+		#<%= widgetId%> .unbxd-headLeftHz
+		{
+		   width : <%= headerWidth%>;
+		}
+		#<%= widgetId%> .unbxd-width-x
+		{
+		   width : <%= imageWidth%>;
+		}
+<%	
+	if(typeof(border) != 'undefined'){
+%>
+	    #<%= widgetId%>
+	    {
+	    	border-width : <%= border.size%>px;
+	       	border-color : <%= border.color%>;
+	    }
+<%
+  	}
+
+  	if(showHeader === false){
+%>
+    	#<%= widgetId%> .unbxd-headLeftHz{
+    		display : none;
+    	}
+<%
+  	}
+
+%>
+	#<%= widgetId %> .unbxd-headLeftHz .unbxd-class1
+	{
+		font-size : 14px;
+		font-weight : bold;
+		text-align : left;
+		color : #000000;
+	}
+
+@media screen and (min-width: 200px) and (max-width: 500px) {
+   ul.unbxd-widgets{
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		text-align: center;
+		background: none;
+		text-align: center;
+		border: 0;
+		position: relative;
+   }
+   ul.unbxd-widgets li {
+		float: none;
+		display: inline-block;
+		vertical-align: top;
+		padding: 5px !important;
+		padding-right: 9px !important;
+		background: transparent;
+		position: relative;
+		width: 148px !important;
+		background-size: auto;
+		box-sizing: border-box;
+		color: rgb(255, 255, 255);
+		font-family: openSansRegular;
+		font-size: 12px;
+		font-style: normal;
+		font-variant: normal;
+		font-weight: normal;
+		height: 296px;
+		padding-bottom: 5px;
+		padding-left: 5px;
+		padding-right: 5px;
+		padding-top: 5px;
+		text-align: center;
+		width: 148px;
+	}
+	ul.unbxd-widgets li a.pname{
+		font-family: 'questrialRegular';
+		line-height: 1.35;
+	}
+	ul.unbxd-widgets li a >img {
+		width: 135px;
+		margin: 0 0 10px;
+	}
+	div.unbxd-headLeftHz {
+		width: 100% !important ;
+		margin: 0 0 10px;
+	}
+	div.unbxd-headLeftHz > div.unbxd-class1, 
+	div.unbxd-widgets > div.unbxd-field-pname{
+		font-size: 13px !important ;
+		text-transform: uppercase !important ;
+		font-family: 'openSansSemibold' !important; 
+		text-align: center !important;
+		text-decoration: none !important;
+		height: 20px !important;
+	}
+	div.unbxd-slideHz > div.unbxd-width-100:first-child{
+		display: none !important;
+	}
+	.unbxd-slideHz {
+		padding-top: 0 !important;
+	}
+	.unbxd-field-pname{
+		padding: 5px;
+	}
+}
+
+</style>
+
+<div class="unbxd-contHz" id="<%= widgetId%>">
+	<div class='unbxd-widget-header'>
+		<div class="unbxd-headLeftHz">
+			<div class="unbxd-class1 section-title"><%= widgetTitles[boxType] || "Recommendations" %></div>
+			<!--.unbxd-class2 Powered by
+				a(href='http://unbxd.com', target='_blank')
+				  .unbxd-logo-->
+		</div>
+		<div style="clear:both"></div>
+	</div>
+	<div class="unbxd-wrapperHz">
+	<%
+		var page_size = noOfItems || 5;
+    	var num_slides = num_slides || Math.floor(products.length / page_size);
+    	var products_in_last_slide = products.length % page_size;
+    	if(products_in_last_slide > 0) num_slides = num_slides + 1;
+    	console.log("num_slides ",num_slides);
+    	for(var i = 0; i < num_slides; i++){
+    %>
+    	<div class="unbxd-slideHz">
+	    	<%
+	    		var rows = [{ 
+					fieldName : 'image_link'
+				}];
+
+	    		if(typeof(description) != 'undefined' && description.length > 0){
+	    			rows = rows.concat(description);
+	    		}
+    			_.each(rows, function(row){
+    		%>
+    			<div class="unbxd-width-100">
+    				<ul class="unbxd-widgets">
+		   	<%
+		    		for(var j = 0; j < page_size; j++){
+			        	var index = (i * page_size) + j;
+			        	if(products.length > index){
+			        		var product = products[index];
+			          		var image_link = product['image_link'] == undefined ? '' : product['image_link'][0];
+			          		var item_link = product['item_link'] || '#';
+			          		var sourceAttrString = typeof(sourceAttr) != 'undefined' && typeof(sourceAttrValue) != 'undefined' ? sourceAttr + "='" + sourceAttrValue + "'" : "";
+
+			          		var styleStr = row.fieldName == 'image_link' ? "" : ("font-size: " + row['fontSize'] + "; font-weight: " + row['fontWeight'] + "; text-align: " + row['float'] + ";");
+			          		var classStr = row.fieldName == 'image_link' ? "unbxd-parent" : "unbxd-desc";
+			          		var currency = row['currency'] || product['currency'] || "USD"
+			          		var currencySym = "$";
+		    %> 		
+							<li class="unbxd-width-x unbxd-field-<%= row.fieldName%> <%= classStr%>" style="<%= styleStr%>" unbxdparam_sku="<%= product['pid']%>" unbxdparam_prank="<%= index + 1%>" unbxdattr="product" unbxdparam_boxtype="<%= boxType%>" <%= sourceAttrString%>>
+			<% if(typeof isMobile != 'undefined' && isMobile === true){
+			  _.each(rows, function(row){  
+			%>
+								<a href="<%= item_link%>" class="<%=row['fieldName'] %>" >
+			<%
+								if(row.fieldName == 'image_link'){
+			%>
+									<img src="<%= image_link%>">
+			<%
+								}else{
+			%>
+									<%= product[row['fieldName']] %>
+			<%
+								}
+			%>
+								</a>
+			<% }) }else{ %>
+									<a href="<%= item_link%>">
+			<%
+								if(row.fieldName == 'image_link'){
+			%>
+									<img src="<%= image_link%>">
+			<%
+								}else if(row.fieldName == 'price'){
+			%>
+									<%= currencySym%><%= product[row['fieldName']]%>
+			<%
+								}else{
+			%>
+									<%= product[row['fieldName']] %>
+			<%
+								}
+			%>
+								</a>
+		    <% } %>
+							</li>
+			<%				
+						}
+					}
+			%>	
+					</ul>
+				</div>
+			<%
+    			});
+			}
+			%>
+    	</div>
+	</div>
+</div>
+<script type="text/javascript">(function($){
+	var widgetId = "<%= widgetId%>";
+	
+	// Scroll vars
+	var currentPosition = 0;
+	var slides = $('#' + widgetId + ' .unbxd-slideHz');
+	var numberOfSlides = slides.length;
+	
+	// Remove scrollbar in JS
+	$('#' + widgetId + ' .unbxd-wrapperHz').css('overflow', 'hidden');
+	
+	// Wrap all .slides with #slideInner div
+	slides.wrapAll('<div id="slideInner"></div>')
+	// Float left to display horizontally, readjust .slides width
+	.css({
+	  'float' : 'left',
+	  'width' : (100 / numberOfSlides) + '%'
+	});
+	
+	// Set #slideInner width equal to total width of all slides
+	$('#' + widgetId + ' #slideInner').css('width', (100 * numberOfSlides) + '%');
+	
+	// Insert left and right arrow controls in the DOM
+	$('#' + widgetId + " .unbxd-widget-header")
+	  .prepend('<span class="unbxd-control" style="float:right;" id="arrowLeft"><img src="//d21gpk1vhmjuf5.cloudfront.net/img/arrow-left.png" style="margin-right:10px; width:16px; height:16px; border:none;" />	</span>')
+      // .prepend('<span style="float:right;display: none;" id="arrowLeftInactive"><img src="//d21gpk1vhmjuf5.cloudfront.net/img/arrow-left-inactive.png" style="margin-right:10px; width:16px; height:16px; border:none;" />	</span>')
+      .prepend('<span class="unbxd-control" style="float: right;" id="arrowRight"> <img src="//d21gpk1vhmjuf5.cloudfront.net/img/arrow-right.png" style="width:16px; height:16px; border:none;"/></span>')
+      // .prepend('<span style="float: right;display: none;" id="arrowRightInactive"> <img src="//d21gpk1vhmjuf5.cloudfront.net/img/arrow-right-inactive.png" style="width:16px; height:16px; border:none;" /></span>');
+	  
+	// Hide left arrow control on first load
+	manageControls(currentPosition);
+	
+	// Create event listeners for .controls clicks
+	$('#' + widgetId + ' .unbxd-control').bind('click', function(){
+	  // Determine new position
+	  currentPosition = ($(this).attr('id')=='arrowRight') ? currentPosition + 1 : currentPosition - 1;
+	  
+	  // Hide / show controls
+	  manageControls(currentPosition);
+	  
+	  // Move slideInner using margin-left
+	  $('#' + widgetId + ' #slideInner').animate({
+	    'marginLeft' : 100*(-currentPosition) + '%'
+	  });
+	});
+	
+	// manageControls: Hides and shows controls depending on currentPosition
+	function manageControls(position){
+	  // Hide left arrow if position is first slide
+	  if(position == 0){ 
+	    $('#' + widgetId + ' #arrowLeft').hide();
+	    // $('#' + widgetId + ' #arrowLeftInactive').show();
+	    // $('#' + widgetId + ' #arrowRightInactive').hide();
+	  }else{
+	    $('#' + widgetId + ' #arrowLeft').show();
+	    // $('#' + widgetId + ' #arrowLeftInactive').hide(); 
+	  }
+	  
+	  // Hide right arrow if position is last slide
+	  if(position==numberOfSlides-1){ 
+	    $('#' + widgetId + ' #arrowRight').hide(); 
+	    // $('#' + widgetId + ' #arrowLeftInactive').hide(); 
+	    // $('#' + widgetId + ' #arrowRightInactive').show(); 
+	  }else{ 
+	    $('#' + widgetId + ' #arrowRight').show();  
+	    // $('#' + widgetId + ' #arrowRightInactive').hide();
+	  }
+	}
+	})(jQuery);  
+</script>

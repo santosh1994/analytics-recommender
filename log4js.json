@@ -1,0 +1,15 @@
+{
+  "appenders": [
+    { 
+      "type": "dateFile", 
+      "filename": "recommender.log",
+      "pattern": "-yyyy-MM-dd",
+      "layout" : {
+        "type" : "colored"
+      }
+    }
+  ],
+  "levels": {
+    "[all]":  "TRACE"
+  }
+}

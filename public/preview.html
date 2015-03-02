@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Recommendations Preview</title>
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+		<script type='text/javascript'>
+			var data = {
+			    "layoutType": "horizontal",
+			    "noOfItems": 5,
+			    "background": "#FFFFFF",
+			    "showHeader": true,
+			    "widgetSize": {
+			        "width": 100,
+			        "maxHeight": 100
+			    },
+			    "border": {
+			        "size": 1,
+			        "color": "#000000"
+			    },
+			    "header": {
+			        "value": "Bought also Bought",
+			        "fontSize": "12px",
+			        "fontWeight": "Bold",
+			        "align": "Left",
+			        "color": "#000000"
+			    },
+			    "description": [
+			        {
+			            "key": "price",
+			            "fieldName": "price",
+			            "fontSize": "20px",
+			            "priceField": true,
+			            "fontWeight": "Normal",
+			            "currency": "&#8358;",
+			            "float" : "center"
+			        }
+			    ]
+			}
+
+			$(function() {
+				$.ajax({
+					type : 'POST',
+					url : '/preview',
+					// data : data,
+					data : {
+						layoutType: "vertical",
+						noOfItems : 2,
+						background : "#888",
+						border: {
+					 		size: 2,
+					 		color: "#ffee00"
+	    				},
+						widgetSize : {
+							width : 270
+							// maxHeight : 800
+						},
+						description : [{
+							fieldName : 'pname',
+							fontSize : "20px",
+							float : 'left'
+						},{
+							fieldName : 'price',
+							fontSize : 16,
+							fontWeight : 'bold',
+							currency : 'JPY ',
+							float : 'left'
+						}],
+						showHeader : true,
+						header : {
+							value : 'Products Just For You',
+							fontSize : '20px',
+							fontWeight : 'bold',
+							align : 'left',
+							color : '#ff0000'
+						}
+					},
+					success : function(response){
+						$('#container').html(response);
+					}
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div id='container'></div>
+	</body>
+</html>

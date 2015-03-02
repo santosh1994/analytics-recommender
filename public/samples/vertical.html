@@ -1,0 +1,167 @@
+!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>jCarousel</title>
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<link rel="stylesheet" href="jcarousel.css">
+</head>
+<body>
+	<div class="container">
+		<div class="contVt">
+			<div class="headLeftVt">
+				<div class="class1" style="margin-bottom: 3px;">RECOMMENDED PRODUCTS</div> 
+				<div class="class2" style="padding-left:0px;margin-bottom:15px;">Powered by</div>
+				<a href='http://unbxd.com' target="_blank"><div class="logo"></div></a>
+			</div>
+
+			<div class="wrapperVt">
+				<div class="slideVt">
+					<div class="imgContainer">
+						<div class="img">
+
+						</div>
+						<div class="grayText">
+							Stripped custom fit casual shirt
+						</div>
+						<div class="price">
+							Price: 4000 INR
+						</div>
+					</div>
+
+					<div class="imgContainer">
+						<div class="img">
+
+						</div>
+						<div class="grayText">
+							Stripped custom fit casual shirt
+						</div>
+						<div class="price">
+							Price: 4000 INR
+						</div>
+					</div>
+
+				</div>
+
+
+				<div class="slideVt">
+					<div class="imgContainer">
+						<div class="img1">
+
+						</div>
+						<div class="grayText">
+							Stripped custom fit casual shirt
+						</div>
+						<div class="price">
+							Price: 4000 INR
+						</div>
+					</div>
+
+					<div class="imgContainer">
+						<div class="img1">
+
+						</div>
+						<div class="grayText">
+							Stripped custom fit casual shirt
+						</div>
+						<div class="price">
+							Price: 4000 INR
+						</div>
+					</div>
+				</div>
+
+				<div class="slideVt">
+					<div class="imgContainer">
+						<div class="img2">
+
+						</div>
+						<div class="grayText">
+							Stripped custom fit casual shirt
+						</div>
+						<div class="price">
+							Price: 4000 INR
+						</div>
+					</div>
+
+					<div class="imgContainer">
+						<div class="img2">
+
+						</div>
+						<div class="grayText">
+							Stripped custom fit casual shirt
+						</div>
+						<div class="price">
+							Price: 4000 INR
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		(function(){
+			// Scroll vars
+			var currentPositionVt = 0;
+			var slideHeight = 500;
+			var slidesVert = $('.slideVt');
+			var numberOfSlidesVt = slidesVert.length;
+
+		    // Remove scrollbar in JS
+		    $('.wrapperVt').css('overflow', 'hidden');
+
+		    // Wrap all .slides with #slideInner div
+		    slidesVert
+		    .wrapAll('<div id="slideInner1"></div>')
+		    // Float left to display horizontally, readjust .slides width
+		    .css({
+		    	'float' : 'left',
+		    	'height' : slideHeight
+		    });
+
+		    // Set #slideInner width equal to total width of all slides
+		    $('#slideInner1').css('height', slideHeight * numberOfSlidesVt);
+
+		    // Insert left and right arrow controls in the DOM
+		    $('.contVt')
+		    .append('<span class="controlVt" id="arrowUp" style="margin-left:110px;"><img src="img/arrow-up.png" width="16px" height="16px" border="0" />	</span>')
+		    .append('<span style="display: none;margin-left:110px;" id="arrowUpInactive"><img src="img/arrow-up-inactive.png" width="16px" height="16px" border="0" />	</span>')
+		    .append('<span class="controlVt" id="arrowDown"> <img src="img/arrow-down.png" width="16px" height="16px" border="0" /></span>')
+		    .append('<span style="display: none;" id="arrowDownInactive"> <img src="img/arrow-down-inactive.png" width="16px" height="16px" border="0" /></span>');
+
+		    // Hide left arrow control on first load
+		    manageControlsVt(currentPositionVt);
+
+		    // Create event listeners for .controls clicks
+		    $('.controlVt').bind('click', function(){
+		        // Determine new position
+		        currentPositionVt = ($(this).attr('id')=='arrowDown')
+		        ? currentPositionVt+1 : currentPositionVt-1;
+
+		        // Hide / show controls
+		        manageControlsVt(currentPositionVt);
+		        // Move slideInner using margin-left
+		        $('#slideInner1').animate({
+		        	'marginTop' : slideHeight*(-currentPositionVt)
+		        });
+		    });
+
+		    // manageControls: Hides and shows controls depending on currentPosition
+		    function manageControlsVt(positionVt){
+		        // Hide left arrow if position is first slide
+		        if(positionVt==0){ $('#arrowUp').hide();
+		        $('#arrowUpInactive').show();
+		        $('#arrowDownInactive').hide();
+		    }
+		    else{ 
+		    	$('#arrowUp').show();
+		    	$('#arrowUpInactive').hide(); }
+		        // Hide right arrow if position is last slide
+		        if(positionVt==numberOfSlidesVt-1){ $('#arrowDown').hide(); $('#arrowUpInactive').hide(); $('#arrowDownInactive').show(); }
+		        else{ $('#arrowDown').show(); $('#arrowDownInactive').hide(); }
+		    }
+	    })();
+    </script>
+
+</body>

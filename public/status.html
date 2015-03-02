@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="refresh" content="30">
+	<title>Recommendations Node Status</title>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	
+	<script type="text/javascript">
+		$(function() {
+			$.ajax({
+				url : '/getStatus',
+				success : function(response){
+					console.log(response);
+
+					for(var key in response){
+						$('#requests-table tbody').append("<tr><td>" + key + "</td><td>" + response[key] + "</td></tr>")
+					}
+				},
+				error: function (xhr, ajaxOptions, thrownError) {
+			        $('#error-message').html("Status : " + xhr.status + ", Message : " + thrownError);
+			        $('#error-box').show();
+      			}
+			})
+		});		
+	</script>
+</head>
+<body>
+	<div class="container">
+		<div class="alert alert-danger alert-dismissible" role="alert" style='display:none;' id='error-box'>
+	  		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	  		<span id="error-message">Better check yourself, you're not looking too good.</span>
+		</div>
+
+		<table class="table table-striped" id="requests-table">
+		  <thead>
+		  	<tr>
+		  		<th>Site</th>
+		  		<th>Requests</th>
+		  	</tr>
+		  </thead>
+		  <tbody>
+		  </tbody>
+		</table>
+	</div>
+</body>

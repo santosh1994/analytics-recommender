@@ -1,0 +1,11 @@
+{
+  	"port" : "8082",
+  	"log.dir" : "logs/",
+  	"recommender.host" : "recommender.unbxdapi.com",
+  	"recommender.recommendations.path" : "/analytics-recommender/recommendations/",
+  	"aggregator.host" : "localhost",
+  	"aggregator.util.path" : "/analytics-aggregator/util",
+  	"aggregator.sites.path" : "/analytics-aggregator/sites",
+    "locations.host" : "locations.unbxdapi.com",
+    "auditor.url" : "http://auditor.unbxdapi.com/audit/"
+}

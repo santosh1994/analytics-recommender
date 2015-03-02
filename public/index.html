@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Recommendations Sample</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div id="unbxd_also_viewed"></div>		
+		<div id="unbxd_also_bought"></div>
+		<div id="unbxd_more_like_these"></div>
+		<div id="unbxd_recently_viewed"></div>
+		<div id="unbxd_recommended_for_you"></div>
+		<div id="unbxd_top_sellers"></div>
+		<div id="unbxd_category_top_sellers"></div>
+		<div id="unbxd_brand_top_sellers"></div>
+		<div id="unbxd_pdp_top_sellers"></div>
+		<div id="unbxd_cart_recommendations"></div>
+		<!-- <div id="unbxd_also_viewed_vt"></div> -->
+
+		<script type="text/javascript">
+			function getParameterByName(name) {
+			    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+			    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+			        results = regex.exec(location.search);
+			    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+			}
+
+			var UnbxdMode = 'local';
+
+			/* * * CONFIGURATION * * */
+			var UnbxdSiteName = getParameterByName('sitename');
+			var UnbxdApiKey = "master_key";
+			
+			var UnbxdWidgetsConf = {
+				pid : getParameterByName("pid"),
+				category : getParameterByName("category"),
+				brand : getParameterByName("brand")
+ 			};
+
+			/* * * DON'T EDIT BELOW THIS LINE * * */			
+	        (function() {
+	            var ubx = document.createElement('script'); ubx.type = 'text/javascript'; ubx.async = true;
+	            ubx.src = '/js/embed.js';
+	            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ubx);
+	        })();
+		</script>
+		<script type="text/javascript" src="//unbxd.s3.amazonaws.com/unbxdAnalytics.js"></script>
+	</div>
+</body>

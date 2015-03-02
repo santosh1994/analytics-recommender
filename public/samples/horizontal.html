@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>jCarousel</title>
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<link rel="stylesheet" href="jcarousel.css">
+</head>
+<body>
+
+	<div class="container">
+		<div class="contHz">
+			<div class="headLeftHz">
+				<div class="class1">RECOMMENDED PRODUCTS</div>  
+				<div class="class2">Powered by</div> 
+				<a href='http://unbxd.com' target="_blank"><div class="logo"></div></a>
+			</div>
+
+			<div class="wrapperHz">
+				<div class="slideHz">
+					<div class="imgContainer">
+						<div class="img">
+
+						</div>
+						<div class="grayText">
+							Stripped custom fit casual shirt
+						</div>
+						<div class="price">
+							Price: 4000 INR
+						</div>
+					</div>
+					<div class="space">
+						&nbsp;
+					</div>
+					<div class="imgContainer">
+						<div class="img">
+
+						</div>
+						<div class="grayText">
+							Stripped custom fit casual shirt
+						</div>
+						<div class="price">
+							Price: 4000 INR
+						</div>
+					</div>
+					<div class="space">
+						&nbsp;
+					</div>
+					<div class="imgContainer">
+						<div class="img">
+
+						</div>
+						<div class="grayText">
+							Stripped custom fit casual shirt
+						</div>
+						<div class="price">
+							Price: 4000 INR
+						</div>
+					</div>
+					<div class="space">
+						&nbsp;
+					</div>
+					<div class="imgContainer">
+						<div class="img">
+
+						</div>
+						<div class="grayText">
+							Stripped custom fit casual shirt
+						</div>
+						<div class="price">
+							Price: 4000 INR
+						</div>
+					</div>
+					<div class="space">
+						&nbsp;
+					</div>
+					<div class="imgContainer">
+						<div class="img">
+
+						</div>
+						<div class="grayText">
+							Stripped custom fit casual shirt
+						</div>
+						<div class="price">
+							Price: 4000 INR
+						</div>
+					</div>
+				</div>
+
+				<div class="slideHz">
+					<div class="imgContainer">
+						<div class="img1">
+
+						</div>
+						<div class="grayText">
+							Stripped custom fit casual shirt
+						</div>
+						<div class="price">
+							Price: 4000 INR
+						</div>
+					</div>
+					<div class="space">
+						&nbsp;
+					</div>
+					<div class="imgContainer">
+						<div class="img1">
+
+						</div>
+						<div class="grayText">
+							Stripped custom fit casual shirt
+						</div>
+						<div class="price">
+							Price: 4000 INR
+						</div>
+					</div>
+					<div class="space">
+						&nbsp;
+					</div>
+					<div class="imgContainer">
+						<div class="img1">
+
+						</div>
+						<div class="grayText">
+							Stripped custom fit casual shirt
+						</div>
+						<div class="price">
+							Price: 4000 INR
+						</div>
+					</div>
+					<div class="space">
+						&nbsp;
+					</div>
+					<div class="imgContainer">
+						<div class="img1">
+
+						</div>
+						<div class="grayText">
+							Stripped custom fit casual shirt
+						</div>
+						<div class="price">
+							Price: 4000 INR
+						</div>
+					</div>
+					<div class="space">
+						&nbsp;
+					</div>
+					<div class="imgContainer">
+						<div class="img1">
+
+						</div>
+						<div class="grayText">
+							Stripped custom fit casual shirt
+						</div>
+						<div class="price">
+							Price: 4000 INR
+						</div>
+					</div>
+				</div>
+
+				<div class="slideHz">
+					<div class="imgContainer">
+						<div class="img2">
+
+						</div>
+						<div class="grayText">
+							Stripped custom fit casual shirt
+						</div>
+						<div class="price">
+							Price: 4000 INR
+						</div>
+					</div>
+					<div class="space">
+						&nbsp;
+					</div>
+					<div class="imgContainer">
+						<div class="img2">
+
+						</div>
+						<div class="grayText">
+							Stripped custom fit casual shirt
+						</div>
+						<div class="price">
+							Price: 4000 INR
+						</div>
+					</div>
+					<div class="space">
+						&nbsp;
+					</div>
+					<div class="imgContainer">
+						<div class="img2">
+
+						</div>
+						<div class="grayText">
+							Stripped custom fit casual shirt
+						</div>
+						<div class="price">
+							Price: 4000 INR
+						</div>
+					</div>
+					<div class="space">
+						&nbsp;
+					</div>
+					<div class="imgContainer">
+						<div class="img2">
+
+						</div>
+						<div class="grayText">
+							Stripped custom fit casual shirt
+						</div>
+						<div class="price">
+							Price: 4000 INR
+						</div>
+					</div>
+					<div class="space">
+						&nbsp;
+					</div>
+					<div class="imgContainer">
+						<div class="img2">
+
+						</div>
+						<div class="grayText">
+							Stripped custom fit casual shirt
+						</div>
+						<div class="price">
+							Price: 4000 INR
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>		
+
+	<script type="text/javascript">
+		(function(){
+			// Scroll vars
+			var currentPosition = 0;
+			var slideWidth = 900;
+			var slides = $('.slideHz');
+			var numberOfSlides = slides.length;
+
+		    // Remove scrollbar in JS
+		    $('.wrapperHz').css('overflow', 'hidden');
+
+		    // Wrap all .slides with #slideInner div
+		    slides
+		    .wrapAll('<div id="slideInner"></div>')
+		    // Float left to display horizontally, readjust .slides width
+		    .css({
+		    	'float' : 'left',
+		    	'width' : slideWidth
+		    });
+
+		    // Set #slideInner width equal to total width of all slides
+		    $('#slideInner').css('width', slideWidth * numberOfSlides);
+
+		    // Insert left and right arrow controls in the DOM
+		    $('.contHz')
+		    .prepend('<span class="control" style="float:right;" id="arrowLeft"><img src="img/arrow-left.png" style="margin-right:10px;" width="16px" height="16px" border="0" />	</span>')
+		    .prepend('<span style="float:right;display: none;" id="arrowLeftInactive"><img src="img/arrow-left-inactive.png" style="margin-right:10px;" width="16px" height="16px" border="0" />	</span>')
+		    .prepend('<span class="control" style="float: right;" id="arrowRight"> <img src="img/arrow-right.png" width="16px" height="16px" border="0" /></span>')
+		    .prepend('<span style="float: right;display: none;" id="arrowRightInactive"> <img src="img/arrow-right-inactive.png" width="16px" height="16px" border="0" /></span>');
+
+		    // Hide left arrow control on first load
+		    manageControls(currentPosition);
+
+		    // Create event listeners for .controls clicks
+		    $('.control').bind('click', function(){
+		        // Determine new position
+		        currentPosition = ($(this).attr('id')=='arrowRight')
+		        ? currentPosition+1 : currentPosition-1;
+
+		        // Hide / show controls
+		        manageControls(currentPosition);
+		        // Move slideInner using margin-left
+		        $('#slideInner').animate({
+		        	'marginLeft' : slideWidth*(-currentPosition)
+		        });
+		    });
+
+		    // manageControls: Hides and shows controls depending on currentPosition
+		    function manageControls(position){
+		        // Hide left arrow if position is first slide
+		        if(position==0){ $('#arrowLeft').hide();
+		        $('#arrowLeftInactive').show();
+		        $('#arrowRightInactive').hide();
+		    }
+		    else{ 
+		    	$('#arrowLeft').show();
+		    	$('#arrowLeftInactive').hide(); }
+		        // Hide right arrow if position is last slide
+		        if(position==numberOfSlides-1){ $('#arrowRight').hide(); $('#arrowLeftInactive').hide(); $('#arrowRightInactive').show(); }
+		        else{ $('#arrowRight').show();  $('#arrowRightInactive').hide();}
+		    }
+		})();
+    </script>
+</body>
