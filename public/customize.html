@@ -10,9 +10,9 @@
 	<link href="bower_components/charisma-master/css/jquery.iphone.toggle.css" rel="stylesheet">
 	<link href="bower_components/charisma-master/css/jquery.noty.css" rel="stylesheet">
 	<link href="bower_components/charisma-master/css/noty_theme_default.css" rel="stylesheet">
-	<link href="req/bootstrap-journal.css" rel="stylesheet">
-	<link href="req/bootstrap-responsive.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="req/bootstrap/css/bootstrap.css">
+	<link href="css/bootstrap-journal.css" rel="stylesheet">
+	<link href="bower_components/bootstrap/docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="bower_components/bootstrap/docs/assets/css/bootstrap.css" rel="stylesheet">
 
 	
 	<style type="text/css">
@@ -25,26 +25,20 @@
     }
 
     @media (min-width: 0px) and (max-width: 1080px) {
-.row-fluid .span2{
-	width: 25%;
+		.row-fluid .span2{
+			width: 25%;
+		}
 	}
-}
-@media (max-width: 1080px) and (min-width: 768px){
-.main-menu-span {
-	width: 25%!important;
+	@media (max-width: 1080px) and (min-width: 768px){
+		.main-menu-span {
+			width: 25%!important;
+		}
 	}
-}
-.span2{
-	background-color: #f5f5f5;
-	border: 1px solid #e3e3e3;
-}
+	.span2{
+		background-color: #f5f5f5;
+		border: 1px solid #e3e3e3;
+	}
 
-/*    @media (min-width: 0px) and (max-width: 1080px) {
-.row-fluid .span2 {
-    		width:15%;
-    	}*/
-
-    }
 	</style>
 	<body>
 	<div class="navbar">
@@ -121,12 +115,8 @@
 		</div>
 		<footer>
         	<p class="pull-left">&copy; <a href="http://unbxd.com" target="_blank">Unbxd Inc.</a> 2014</p>
-        	<!--<p class="pull-right">Powered by: <a href="http://usman.it/free-responsive-admin-template">Charisma</a></p>-->
     	</footer>
 	</div>
-
-									
-<!-- end -->
 	</body>
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src='http://cdn.ractivejs.org/latest/ractive.js'></script>
@@ -142,8 +132,6 @@
 	<script src="bower_components/charisma-master/js/jquery.uploadify-3.1.min.js"></script>
 	<script type="text/javascript">
 		var editor = ace.edit("editor");
-   		//editor.setTheme("ace/theme/monokai");
-   		//editor.getSession().setMode("ace/mode/html");
 		var list = [];
 		var res=[];
 		var layoutType="horizontal";
@@ -171,7 +159,7 @@
 						data : {
 							layoutType : layoutType },
 						beforeSend: function() {
-    						$('#ajax-load').html("<img src='req/ajax-loader-6.gif' />");
+    						$('#ajax-load').html("<img src='img/ajax-loader-6.gif' />");
   						},
 						success : function(response){
 							//ractive.set('content',response);
@@ -196,7 +184,7 @@
 				data : {
 					layoutType : layoutType },
 				beforeSend : function(){
-					$('#ajax-load').html("<img src='req/ajax-loader-6.gif' />");
+					$('#ajax-load').html("<img src='img/ajax-loader-6.gif' />");
 				},
 				success : function(response){
 					$('#ajax-load').html("");
@@ -216,7 +204,7 @@
 				data : {
 					template : templateval },
 				beforeSend : function(){
-					$('#ajax-load').html("<img src='req/ajax-loader-6.gif' />");
+					$('#ajax-load').html("<img src='img/ajax-loader-6.gif' />");
 				},
 				success : function(response){
 					$('#ajax-load').html("");
@@ -241,7 +229,7 @@
 				data : {
 					isitename : data },
 				beforeSend: function() {
-    				$('#ajax-load').html("<img src='req/ajax-loader-6.gif' />");
+    				$('#ajax-load').html("<img src='img/ajax-loader-6.gif' />");
   				},
 				success : function(response){
 					list = [];
