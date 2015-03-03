@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link href="bower_components/charisma-master/css/uploadify.css" rel="stylesheet">
+	<link href="bower_components/charisma-master/css/animate.min.css" rel="stylesheet">
+	<link href="bower_components/charisma-master/css/charisma-app.css" rel="stylesheet">
+	<link href="bower_components/charisma-master/css/elfinder.min.css" rel="stylesheet">
+	<link href="bower_components/charisma-master/css/elfinder.theme.css" rel="stylesheet">
+	<link href="bower_components/charisma-master/css/jquery-ui-1.8.21.custom.css" rel="stylesheet">
+	<link href="bower_components/charisma-master/css/jquery.iphone.toggle.css" rel="stylesheet">
+	<link href="bower_components/charisma-master/css/jquery.noty.css" rel="stylesheet">
+	<link href="bower_components/charisma-master/css/noty_theme_default.css" rel="stylesheet">
+	<link href="req/bootstrap-journal.css" rel="stylesheet">
+	<link href="req/bootstrap-responsive.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="req/bootstrap/css/bootstrap.css">
+
+	
+	<style type="text/css">
+	body {
+        padding-bottom: 40px;
+        background-color: #fcfbfd;
+    }
+    .sidebar-nav {
+        padding: 9px 0;
+    }
+
+    @media (min-width: 0px) and (max-width: 1080px) {
+.row-fluid .span2{
+	width: 25%;
+	}
+}
+@media (max-width: 1080px) and (min-width: 768px){
+.main-menu-span {
+	width: 25%!important;
+	}
+}
+.span2{
+	background-color: #f5f5f5;
+	border: 1px solid #e3e3e3;
+}
+
+/*    @media (min-width: 0px) and (max-width: 1080px) {
+.row-fluid .span2 {
+    		width:15%;
+    	}*/
+
+    }
+	</style>
+	<body>
+	<div class="navbar">
+    	<div class="navbar-inner">
+        	<div class="container-fluid">
+            	<a class="brand" href="/"> <img alt="Unbxd Logo" src="http://unbxd.com/signature/signature.png" /></a>
+        	</div>
+   		</div>
+	</div>
+
+<!-- start -->
+	<div class="container-fluid">
+
+    		<!-- left menu starts -->
+        <div class="span2 main-menu-span">
+                <ul class="nav nav-tabs nav-stacked main-menu">
+                    <li class="nav-header hidden-tablet">OPTIONS</li>
+                    <li><a class="ajax-link" href="/customize.html"><i class="icon-home"></i><span class="hidden-tablet"> Customize</span></a></li>
+                </ul>
+            
+        </div>
+        <!--/span-->
+        <!-- left menu ends -->
+
+    		<div id="content" class="span10">
+    			<!-- content starts -->
+    			<div class="row-fluid sortable">
+                	<div class="box span12">
+                		<div class="box-header well" data-original-title>
+    						<h2>Editor</h2>
+						</div>
+
+						<style type="text/css" media="screen">
+
+						</style>
+
+						<div class="box-content">
+							<div class="box-content">
+								<fieldset>
+									<div class="control-group">
+										<label class="control-label" for="isitename">iSite Name</label>
+										<input type="text" class="form-control" id="isitename" style="height:30px;"/>
+										<button class="btn btn-primary" id="search" for="isitename">Search</button>
+									</div>
+									<div class="pagination-centered" id="ajax-load"></div>
+									<div class="control-group">
+										<label class="control-label" for="templist">Templates</label>
+										<div class="controls">
+											<div id="container"></div>
+											<script id='template' type='text/ractive'>
+												<select id="templist" value='{{selectedtemp}}' style="width:200px;">
+													<option selected>Select a Template</option>
+    												{{#selectfields}}
+        												<option value='{{id}}'>{{name}}</option>
+    												{{/selectfields}}
+												</select>
+												<legend>{{content}}</legend>
+											</script>	
+										</div>
+									</div>
+									<div class="control-group">
+										<div id="editor" style="width: 1100px; height: 450px;"></div>
+									</div>
+									<div class="control-group" style="padding:40px 400px;">
+										<button class="btn btn-primary" id="save">save</button>
+										<button class="btn btn-primary" id="revert">reset ot orignal</button>
+									</div>
+								</fieldset>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<footer>
+        	<p class="pull-left">&copy; <a href="http://unbxd.com" target="_blank">Unbxd Inc.</a> 2014</p>
+        	<!--<p class="pull-right">Powered by: <a href="http://usman.it/free-responsive-admin-template">Charisma</a></p>-->
+    	</footer>
+	</div>
+
+									
+<!-- end -->
+	</body>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src='http://cdn.ractivejs.org/latest/ractive.js'></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.8/ace.js" charset="utf-8"></script>
+	<script src="bower_components/charisma-master/js/init-chart.js"></script>
+	<script src="bower_components/charisma-master/js/jquery.autogrow-textarea.js"></script>
+	<script src="bower_components/charisma-master/js/jquery.cookie.js"></script>
+	<script src="bower_components/charisma-master/js/jquery.dataTables.min.js"></script>
+	<script src="bower_components/charisma-master/js/jquery.history.js"></script>
+	<script src="bower_components/charisma-master/js/jquery.iphone.toggle.js"></script>
+	<script src="bower_components/charisma-master/js/jquery.noty.js"></script>
+	<script src="bower_components/charisma-master/js/jquery.raty.min.js"></script>
+	<script src="bower_components/charisma-master/js/jquery.uploadify-3.1.min.js"></script>
+	<script type="text/javascript">
+		var editor = ace.edit("editor");
+   		//editor.setTheme("ace/theme/monokai");
+   		//editor.getSession().setMode("ace/mode/html");
+		var list = [];
+		var res=[];
+		var layoutType="horizontal";
+		var ractive = new Ractive({
+			el: 'container',
+			template: '#template',
+				data: {
+					selectedtemp: 'Select a Template',
+      				sidefields: list,
+					content : "No template loaded..."
+      			}
+      		});
+		
+		ractive.observe( 'selectedtemp', function ( newValue, oldValue, keypath ) {
+			if(oldValue||newValue){
+				if(newValue=="Select a Template"){
+					editor.setValue("");
+					ractive.set("content","No template loaded...");
+				}
+				else{
+					layoutType = res.templateOpts[newValue].layoutType;
+					$.ajax({
+						type : 'GET',
+						url : '/readTemplateconfig',
+						data : {
+							layoutType : layoutType },
+						beforeSend: function() {
+    						$('#ajax-load').html("<img src='req/ajax-loader-6.gif' />");
+  						},
+						success : function(response){
+							//ractive.set('content',response);
+							$('#ajax-load').html("");
+							editor.setValue(response,-1);
+							ractive.set("content","loaded "+layoutType+" template")
+						},
+						error : function(){
+							$('#ajax-load').html("<p>Error loading</p>");
+							setTimeout(function(){ $('#ajax-load').html(""); }, 3000);
+						}
+					});
+				}
+
+			}
+		});
+
+		$("button#revert").click(function(){
+			$.ajax({
+				type : 'GET',
+				url : '/readTemplateconfig',
+				data : {
+					layoutType : layoutType },
+				beforeSend : function(){
+					$('#ajax-load').html("<img src='req/ajax-loader-6.gif' />");
+				},
+				success : function(response){
+					$('#ajax-load').html("");
+					editor.setValue(response,-1);
+				},
+				error : function(){
+					$('#ajax-load').html("<p>Error reseting</p>");
+					setTimeout(function(){ $('#ajax-load').html(""); }, 3000);
+				}
+			});
+		});
+		$("button#save").click(function(){
+			var templateval = editor.getValue();
+			$.ajax({
+				type : 'POST',
+				url : '/saveTemplateconfig',
+				data : {
+					template : templateval },
+				beforeSend : function(){
+					$('#ajax-load').html("<img src='req/ajax-loader-6.gif' />");
+				},
+				success : function(response){
+					$('#ajax-load').html("");
+					// editor.setValue(response,-1);				
+				},
+				error : function(){
+					$('#ajax-load').html("<p>Error in saving</p>");
+					setTimeout(function(){ $('#ajax-load').html(""); }, 3000);
+				}
+			});
+		});
+
+
+		
+		$("button#search").click(function() {
+			list = [];
+			ractive.set('selectfields',list);
+			var data= $("#isitename").val().trim();
+			$.ajax({
+				type : 'GET',
+				url : '/gettemplate',
+				data : {
+					isitename : data },
+				beforeSend: function() {
+    				$('#ajax-load').html("<img src='req/ajax-loader-6.gif' />");
+  				},
+				success : function(response){
+					list = [];
+					res = response;
+					$('#ajax-load').html("");
+					$.each(response.templateOpts, function(key, value){
+    					list.push({id:key,name:key});
+    					ractive.set('selectfields',list);
+					});
+				},
+				error : function(){
+					$('#ajax-load').html("<p>Site Not Found</p>");
+					setTimeout(function(){ $('#ajax-load').html(""); }, 3000);
+				}
+			});
+		});
+	</script>
+</html>

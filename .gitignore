@@ -1,0 +1,11 @@
+.project
+node_modules/*
+logs/*
+settings.json
+.settings/*
+public/scripts/*
+public/bower_components/*
+*.sublime*
+*DS_Store*
+*.log*
+*.gz

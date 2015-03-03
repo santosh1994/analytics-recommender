@@ -73,7 +73,7 @@ app.configure(function() {
 		next();
 	});
 });
-
+ 
 /**
  * Routes
  */
@@ -81,6 +81,54 @@ require('./routes')(app);
 
 app.get('/getStatus', function(req, res){
 	res.send(reqFreq);
+});
+
+app.get('/gettemplate', function(req, res){
+	//res.send(req.query.isitename);
+	aggregatorClient.getSite(req.query.isitename, function(err, site){
+		if(err){
+			logger.error(err);
+			res.send(err.code, err.body);
+		}
+		else{
+			if(true){
+				res.send(site);
+			}
+			else{
+				res.send(401);
+			}
+		}
+	});
+
+});
+
+app.get('/readTemplateconfig', function(req, res){
+	var fs = require('fs');
+	var path = require('path');
+	var filePath;
+	if(req.query.layoutType=="horizontal"){
+		filePath = path.join(__dirname, '/views/hz-recommender.html');
+	}
+	else{
+		filePath = path.join(__dirname, '/views/hz-recommender.html');
+	}
+	fs.readFile(filePath, {encoding: 'utf-8'}, function(err,data){
+ 	   if (!err){
+ 	    	res.writeHead(200, {'Content-Type': 'text/html'});
+	    	res.write(data);
+	    	res.end();
+	    }
+	    else{
+        	console.log(err);
+    	}
+
+	});
+});
+
+app.post('/saveTemplateconfig', function(req, res){
+
+	console.log(req.body.template);
+	res.json({success:true});
 });
 
 /**
